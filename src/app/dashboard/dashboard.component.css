@@ -1,0 +1,94 @@
+.text-gold {
+    color: #d4af37;
+}
+
+.border-gold {
+    border-left-width: 5px !important;
+    border-left-color: #d4af37 !important;
+}
+
+.welcome-section {
+    border-radius: 15px;
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.bg-success-light { background-color: rgba(40, 167, 69, 0.1); }
+.bg-warning-light { background-color: rgba(255, 193, 7, 0.1); }
+
+h1 {
+    font-family: 'Playfair Display', serif; /* Si tu veux un look plus classe */
+}
+
+.text-gold {
+    color: #d4af37;
+}
+
+/* Badges d'état stylisés */
+.bg-soft-warning {
+    background-color: rgba(255, 193, 7, 0.15);
+    border: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+.bg-soft-success {
+    background-color: rgba(25, 135, 84, 0.15);
+    border: 1px solid rgba(25, 135, 84, 0.2);
+}
+
+.badge {
+    padding: 8px 12px;
+    font-weight: 600;
+}
+
+/* Table header */
+.table thead th {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #6c757d;
+    padding: 15px 10px;
+}
+
+/* Effet de survol */
+.table-hover tbody tr:hover {
+    background-color: #fcf9f0;
+}
+
+.text-gold {
+    color: #d4af37;
+}
+
+#detailCommandeModal .modal-body {
+    font-family: 'Courier New', Courier, monospace; /* Look ticket de caisse optionnel */
+    background-color: #fff;
+}
+
+#detailCommandeModal table th {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}
+
+#detailCommandeModal .btn-dark {
+    background-color: #212529;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+#detailCommandeModal .btn-dark:hover {
+    background-color: #d4af37;
+    border-color: #d4af37;
+}
+
+/* Style pour l'impression (cache tout sauf la modal) */
+@media print {
+    body * { visibility: hidden; }
+    #detailCommandeModal, #detailCommandeModal * { visibility: visible; }
+    #detailCommandeModal { position: absolute; left: 0; top: 0; width: 100%; }
+}

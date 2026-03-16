@@ -1,0 +1,42 @@
+.text-gold {
+    color: #d4af37;
+}
+
+.btn-gold {
+    background-color: #d4af37;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* Style des cercles d'icônes */
+.icon-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.bg-soft-primary { background-color: rgba(13, 110, 253, 0.1); }
+.bg-soft-success { background-color: rgba(25, 135, 84, 0.1); }
+.bg-soft-warning { background-color: rgba(255, 193, 7, 0.1); }
+
+.btn-outline-primary, .btn-outline-danger {
+    border-radius: 8px;
+    padding: 5px 15px;
+}
+

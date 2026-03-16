@@ -1,0 +1,125 @@
+<div class="container-fluid py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-dark">
+      <i class="fas fa-utensils me-2 text-gold"></i> Carte du Restaurant
+    </h2>
+    <button class="btn btn-gold shadow-sm" data-bs-toggle="modal" data-bs-target="#addProductModal">
+      <i class="fas fa-plus-circle me-2"></i> Ajouter un plat
+    </button>
+  </div>
+
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-body p-2 px-3">
+      <div class="row align-items-center">
+        <div class="col-md-10">
+          <input type="text" class="form-control border-0 shadow-none" placeholder="Rechercher un produit par nom ou catégorie...">
+        </div>
+        <div class="col-md-2 text-end">
+          <i class="fas fa-search text-muted"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card border-0 shadow-sm rounded-3">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="bg-light">
+            <tr>
+              <th class="ps-4">Image</th>
+              <th>Nom du produit</th>
+              <th>Catégorie</th>
+              <th>Prix</th>
+              <th>Description</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="ps-4">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=100" class="product-img rounded shadow-sm" alt="Pizza">
+              </td>
+              <td><span class="fw-bold">Pizza Margherita</span></td>
+              <td><span class="badge badge-category bg-soft-success text-success">Plats</span></td>
+              <td><span class="text-gold fw-bold">12.50 €</span></td>
+              <td><small class="text-muted">Tomate, mozzarella fraîche, basilic...</small></td>
+              <td class="text-center">
+                <div class="btn-group">
+                  <button class="btn btn-sm btn-outline-info me-2"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm btn-light text-primary me-2"><i class="fas fa-edit"></i></button>
+                  <button class="btn btn-sm btn-light text-danger"><i class="fas fa-trash"></i></button>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="ps-4">
+                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=100" class="product-img rounded shadow-sm" alt="Donut">
+              </td>
+              <td><span class="fw-bold">Donut Chocolat</span></td>
+              <td><span class="badge badge-category bg-soft-warning text-warning">Desserts</span></td>
+              <td><span class="text-gold fw-bold">4.00 €</span></td>
+              <td><small class="text-muted">Glaçage chocolat noir et pépites...</small></td>
+              <td class="text-center">
+                <div class="btn-group">
+                  <button class="btn btn-sm btn-outline-info me-2"><i class="fas fa-eye"></i></button>
+                  <button class="btn btn-sm btn-light text-primary me-2"><i class="fas fa-edit"></i></button>
+                  <button class="btn btn-sm btn-light text-danger"><i class="fas fa-trash"></i></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade" id="addProductModal"
+  tabindex="-1" aria-hidden="true"
+  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content border-0">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title">Nouveau Produit</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label fw-bold">Nom du plat</label>
+            <input type="text" name="productName" class="form-control" placeholder="Ex: Burger Maison">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-bold">Prix (FCFA)</label>
+            <input type="number" name="productPrice" class="form-control" placeholder="1500">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-bold">Catégorie</label>
+            <select class="form-select" name="productCategory">
+              <option>Entrées</option>
+              <option>Plats</option>
+              <option>Desserts</option>
+              <option>Boissons</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-bold">Image (URL)</label>
+            <input type="file" name="productImage" class="form-control" placeholder="Lien vers l'image">
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-bold">Description</label>
+            <textarea class="form-control" name="productDescription" rows="3" placeholder="Ingrédients, allergènes..."></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-gold px-4">Enregistrer le produit</button>
+      </div>
+    </div>
+  </div>
+</div>

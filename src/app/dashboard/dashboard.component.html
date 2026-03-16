@@ -1,0 +1,167 @@
+<div class="welcome-section p-4 mb-4 shadow-sm rounded bg-white border-start border-gold">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="display-6 fw-bold text-dark">
+                Bonjour, <span class="text-gold">Chef !</span> 👋
+            </h1>
+            <p class="lead text-muted">
+                Voici ce qui se passe dans votre restaurant aujourd'hui. Prêt pour le service ?
+            </p>
+        </div>
+        <div class="col-md-4 text-md-end d-none d-md-block">
+            <div class="current-date p-2 bg-light rounded shadow-sm">
+                <i class="far fa-calendar-alt me-2 text-gold"></i>
+                <span class="fw-bold">{{ today | date:'dd MMMM yyyy' }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="icon-circle bg-success-light text-success me-3">
+                    <i class="fas fa-shopping-basket"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted mb-0">Commandes</h6>
+                    <span class="h4 fw-bold">12</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="icon-circle bg-warning-light text-warning me-3">
+                    <i class="fas fa-chair"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted mb-0">Tables occupées</h6>
+                    <span class="h4 fw-bold">5 / 15</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="fw-bold"><i class="fas fa-receipt me-2 text-gold"></i> Dernières Commandes</h4>
+    <button class="btn btn-sm btn-outline-dark">Voir tout</button>
+  </div>
+
+  <div class="card border-0 shadow-sm rounded-3">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="bg-light">
+            <tr>
+              <th class="ps-4">Table</th>
+              <th>Produits</th>
+              <th>Total</th>
+              <th>Date & Heure</th>
+              <th>État</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cmd of dernieresCommandes">
+              <td class="ps-4">
+                <span class="badge rounded-pill bg-dark py-2 px-3">Table {{ cmd.table }}</span>
+              </td>
+              <td>
+                <div class="text-truncate" style="max-width: 250px;" [title]="cmd.produits">
+                  {{ cmd.produits }}
+                </div>
+              </td>
+              <td class="fw-bold text-gold">{{ cmd.total | number:'1.2-2' }} €</td>
+              <td>
+                <div class="small fw-bold">{{ cmd.date | date:'dd/MM/yyyy' }}</div>
+                <div class="small text-muted">{{ cmd.date | date:'HH:mm' }}</div>
+              </td>
+              <td>
+                <span class="badge"
+                      [ngClass]="{'bg-soft-warning text-warning': cmd.etat === 'En attente',
+                                 'bg-soft-success text-success': cmd.etat === 'Livré'}">
+                  <i class="fas fa-circle me-1" style="font-size: 8px;"></i>
+                  {{ cmd.etat }}
+                </span>
+              </td>
+              <td class="text-center">
+                <button class="btn btn-sm btn-light border" title="Marquer comme servi">
+                  <i class="fas fa-check text-success" *ngIf="cmd.etat === 'En attente'"></i>
+                  <i class="fas fa-redo text-muted" *ngIf="cmd.etat === 'Livré'"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-info me-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#detailCommandeModal"
+                        (click)="ouvrirDetail(cmd)">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="detailCommandeModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title">
+          <i class="fas fa-file-invoice me-2"></i>Détail Table {{ commandeSelectionnee?.table }}
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body p-4" *ngIf="commandeSelectionnee">
+        <div class="text-center mb-4">
+          <h6 class="text-uppercase fw-bold text-muted">Récapitulatif de la commande</h6>
+          <small>{{ commandeSelectionnee.date | date:'dd/MM/yyyy à HH:mm' }}</small>
+        </div>
+
+        <table class="table table-sm table-borderless">
+          <thead class="border-bottom">
+            <tr class="text-muted small">
+              <th>PRODUIT</th>
+              <th class="text-center">QTÉ</th>
+              <th class="text-end">P.U</th>
+              <th class="text-end">TOTAL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of commandeSelectionnee.detailsProduits">
+              <td>{{ p.nom }}</td>
+              <td class="text-center">x{{ p.quantite }}</td>
+              <td class="text-end">{{ p.prixUnitaire | number:'1.2-2' }}€</td>
+              <td class="text-end fw-bold">{{ (p.quantite * p.prixUnitaire) | number:'1.2-2' }}€</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="border-top mt-3 pt-3">
+          <div class="d-flex justify-content-between h4 fw-bold">
+            <span>Total Global :</span>
+            <span class="text-gold">{{ prixTotalGlobal | number:'1.2-2' }} €</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer bg-light">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-dark" onclick="window.print()">
+          <i class="fas fa-print me-2"></i>Imprimer la facture
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

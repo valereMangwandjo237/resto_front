@@ -1,20 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-dashboard',
   standalone: true,
   imports: [
-    RouterModule,
     CommonModule
   ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.css'
 })
-export class AppComponent {
-  title = 'resto';
-  isCollapsed = false;
+export class DashboardComponent {
+  today: number = Date.now();
 
   dernieresCommandes = [
     { table: '05', produits: 'Pizza Magherita, Coca', total: 14.50, date: '2023-10-27T12:30:00', etat: 'En attente' },
@@ -26,14 +23,21 @@ export class AppComponent {
     { table: '07', produits: 'Tiramisu, Café', total: 8.50, date: '2023-10-27T11:50:00', etat: 'Livré' },
   ];
 
-  get nbEnAttente(): number {
-    const total = this.dernieresCommandes.filter(c => c.etat === 'En attente').length;
-    console.log('Nombre de commandes en attente :', total);
-    return total
+  commandeSelectionnee: any = null;
 
+  ouvrirDetail(commande: any) {
+    this.commandeSelectionnee = commande;
+    // On simule ici une liste de produits détaillée
+    // Dans la vraie vie, ces données viendraient d'une base de données
+    this.commandeSelectionnee.detailsProduits = [
+      { nom: 'Pizza Margherita', quantite: 1, prixUnitaire: 10.50 },
+      { nom: 'Coca-Cola', quantite: 2, prixUnitaire: 2.00 }
+    ];
   }
 
-  toggleSidebar() {
-    this.isCollapsed = !this.isCollapsed;
+  get prixTotalGlobal() {
+    return this.commandeSelectionnee?.detailsProduits?.reduce(
+      (acc: number, p: any) => acc + (p.quantite * p.prixUnitaire), 0
+    );
   }
 }

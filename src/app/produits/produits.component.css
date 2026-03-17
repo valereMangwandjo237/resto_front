@@ -74,3 +74,30 @@ input[type="file"]::file-selector-button {
 input[type="file"]::file-selector-button:hover {
     background-color: #d4af37;
 }
+
+
+.text-gold {
+  color: #d4af37;
+}
+
+.btn-gold {
+  background-color: #d4af37;
+  color: white;
+  border: none;
+}
+
+/* Style spécifique pour la vue détails */
+.bg-soft-warning {
+  background-color: rgba(255, 193, 7, 0.1);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+#viewProductModal .modal-content {
+  border-radius: 15px;
+  overflow: hidden; /* Pour que l'image respecte les bords arrondis */
+}
+
+#viewProductModal h6 {
+  letter-spacing: 1px;
+}

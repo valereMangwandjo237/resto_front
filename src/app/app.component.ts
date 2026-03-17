@@ -28,7 +28,6 @@ export class AppComponent {
 
   get nbEnAttente(): number {
     const total = this.dernieresCommandes.filter(c => c.etat === 'En attente').length;
-    console.log('Nombre de commandes en attente :', total);
     return total
 
   }

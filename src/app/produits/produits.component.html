@@ -4,7 +4,7 @@
       <i class="fas fa-utensils me-2 text-gold"></i> Carte du Restaurant
     </h2>
     <button class="btn btn-gold shadow-sm" data-bs-toggle="modal" data-bs-target="#ProductModal" (click)="Ajouter()">
-      <i class="fas fa-plus-circle me-2"></i> Ajouterun plat
+      <i class="fas fa-plus-circle me-2"></i> Ajouter un plat
     </button>
   </div>
 
@@ -156,7 +156,7 @@
 
       <div class="modal-footer border-0">
         <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-gold px-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#editProductModal">
+        <button type="button" class="btn btn-gold px-4" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ProductModal" (click)="Editer(produitSelectionne)">
           <i class="fas fa-edit me-2"></i>Modifier
         </button>
       </div>

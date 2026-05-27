@@ -100,3 +100,43 @@ h1 {
     #detailCommandeModal, #detailCommandeModal * { visibility: visible; }
     #detailCommandeModal { position: absolute; left: 0; top: 0; width: 100%; }
 }
+
+
+
+/* ==========================================================================
+ PAGINATION
+   ========================================================================== */
+.pagination .page-link {
+    color: #212529; /* Texte sombre pour contraster */
+    background-color: #fff;
+    border-color: #dee2e6;
+    box-shadow: none; /* Supprime le reflet bleu de Bootstrap au clic */
+    transition: all 0.2s ease;
+}
+
+/* 2. Effet au survol (Hover) sur les boutons */
+.pagination .page-link:hover {
+    color: color-mix(in srgb, var(--color-primary) 40%, #000); /* Un doré sombre lisible */
+    background-color: color-mix(in srgb, var(--color-primary) 12%, transparent); /* Fond jaune très doux */
+    border-color: var(--color-primary);
+}
+
+/* 3. Style de la page ACTUELLE (Active) */
+.pagination .page-item.active .page-link {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: #000 !important; /* Texte noir pour une lisibilité parfaite sur le jaune */
+    font-weight: 600;
+}
+
+/* 4. Style des boutons désactivés (Précédent si page 1, ou Suivant si dernière page) */
+.pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+}
+
+/* 5. Sécurité : supprime la lueur bleue de Bootstrap quand le bouton a le focus */
+.pagination .page-link:focus {
+    box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--color-primary) 25%, transparent);
+}

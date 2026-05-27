@@ -53,13 +53,13 @@
 /* Style appliqué automatiquement par Angular au lien actif */
 .active-link {
     background: #495057 !important; /* Gris plus clair que le fond */
-    color: #ffc107 !important;     /* Texte en jaune/or pour le restaurant */
-    border-left: 4px solid #ffc107; /* Petite barre de rappel à gauche */
+    color: #ff922b  !important;     /* Texte en jaune/or pour le restaurant */
+    border-left: 4px solid #ff922b ; /* Petite barre de rappel à gauche */
 }
 
 /* On s'assure que les icônes suivent la couleur du texte actif */
 .active-link i {
-    color: #ffc107;
+    color: #ff922b ;
 }
 
 .main-layout {

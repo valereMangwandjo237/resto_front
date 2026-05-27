@@ -1,12 +1,20 @@
+
+
+/* ==========================================================================
+   2. UTILITIES & COULEURS
+   ========================================================================== */
 .text-gold {
-    color: #d4af37;
+    color: var(--color-primary);
 }
 
 .border-gold {
     border-left-width: 5px !important;
-    border-left-color: #d4af37 !important;
+    border-left-color: var(--color-primary) !important;
 }
 
+/* ==========================================================================
+   3. LAYOUT & COMPOSANTS
+   ========================================================================== */
 .welcome-section {
     border-radius: 15px;
 }
@@ -21,15 +29,12 @@
     font-size: 1.2rem;
 }
 
+/* On utilise des fonds avec opacité intégrée en HEX (les deux derniers chiffres gèrent la transparence) */
 .bg-success-light { background-color: rgba(40, 167, 69, 0.1); }
 .bg-warning-light { background-color: rgba(255, 193, 7, 0.1); }
 
 h1 {
-    font-family: 'Playfair Display', serif; /* Si tu veux un look plus classe */
-}
-
-.text-gold {
-    color: #d4af37;
+    font-family: 'Playfair Display', serif;
 }
 
 /* Badges d'état stylisés */
@@ -40,7 +45,7 @@ h1 {
 
 .bg-soft-success {
     background-color: rgba(25, 135, 84, 0.15);
-    border: 1px solid rgba(25, 135, 84, 0.2);
+    border: 1px solid rgba(25, 134, 84, 0.2);
 }
 
 .badge {
@@ -48,7 +53,9 @@ h1 {
     font-weight: 600;
 }
 
-/* Table header */
+/* ==========================================================================
+   4. TABLEAUX
+   ========================================================================== */
 .table thead th {
     font-size: 0.8rem;
     text-transform: uppercase;
@@ -56,17 +63,16 @@ h1 {
     padding: 15px 10px;
 }
 
-/* Effet de survol */
+/* On remet ton ancien jaune très clair pour le survol, c'est plus sûr ! */
 .table-hover tbody tr:hover {
     background-color: #fcf9f0;
 }
 
-.text-gold {
-    color: #d4af37;
-}
-
+/* ==========================================================================
+   5. COMPOSANT : MODAL TICKET DE CAISSE
+   ========================================================================== */
 #detailCommandeModal .modal-body {
-    font-family: 'Courier New', Courier, monospace; /* Look ticket de caisse optionnel */
+    font-family: 'Courier New', Courier, monospace;
     background-color: #fff;
 }
 
@@ -82,11 +88,13 @@ h1 {
 }
 
 #detailCommandeModal .btn-dark:hover {
-    background-color: #d4af37;
-    border-color: #d4af37;
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
 }
 
-/* Style pour l'impression (cache tout sauf la modal) */
+/* ==========================================================================
+   6. IMPRESSION
+   ========================================================================== */
 @media print {
     body * { visibility: hidden; }
     #detailCommandeModal, #detailCommandeModal * { visibility: visible; }

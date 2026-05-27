@@ -47,9 +47,53 @@
 </div>
 
 <div class="mt-5">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h4 class="fw-bold"><i class="fas fa-receipt me-2 text-gold"></i> Dernières Commandes</h4>
-    <button class="btn btn-sm btn-outline-dark">Voir tout</button>
+  <!-- En-tête principal : Aligne le Titre, la Recherche et les Actions sur une seule ligne -->
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-3">
+
+    <!-- 1. Partie Gauche : Titre -->
+    <h4 class="fw-bold mb-0">
+      <i class="fas fa-receipt me-2 text-gold"></i> Dernières Commandes
+    </h4>
+
+    <!-- 2. Partie Centrale : La Barre de Recherche (Largeur contrôlée) -->
+    <div class="flex-grow-1" style="max-width: 350px; min-width: 200px;">
+      <div class="input-group input-group-sm custom-search-group">
+        <span class="input-group-text bg-white border-end-0 text-muted">
+          <i class="fas fa-search"></i>
+        </span>
+        <input
+          type="text"
+          class="form-control border-start-0 ps-0"
+          placeholder="Rechercher par produit, date..."
+          [(ngModel)]="searchTerm"
+          (input)="onSearchOrPageSizeChange()"
+        >
+      </div>
+    </div>
+
+    <!-- 3. Partie Droite : Actions (Sélecteur + Bouton) -->
+    <div class="d-flex align-items-center gap-3 ms-auto">
+
+      <!-- Le sélecteur de pagination -->
+      <div class="d-flex align-items-center gap-2">
+        <label for="perPage" class="form-label mb-0 text-muted small text-nowrap">Afficher :</label>
+        <select id="perPage"
+                class="form-select form-select-sm border-secondary-subtle"
+                style="width: 75px; cursor: pointer;"
+                [(ngModel)]="itemsPerPage"
+                (change)="onItemsPerPageChange()">
+          <option [ngValue]="5">5</option>
+          <option [ngValue]="10">10</option>
+          <option [ngValue]="20">20</option>
+          <option [ngValue]="50">50</option>
+        </select>
+      </div>
+
+      <!-- Le bouton Voir Tout -->
+      <button class="btn btn-sm btn-outline-dark text-nowrap" (click)="voirTout()">Voir tout</button>
+
+    </div>
+
   </div>
 
   <div class="card border-0 shadow-sm rounded-3">
@@ -67,7 +111,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let cmd of dernieresCommandes">
+            <tr *ngFor="let cmd of commandesPaginees">
               <td class="ps-4">
                 <span class="badge rounded-pill bg-dark py-2 px-3">Table {{ cmd.table }}</span>
               </td>
@@ -90,10 +134,6 @@
                 </span>
               </td>
               <td class="text-center">
-                <button class="btn btn-sm btn-light border" title="Marquer comme servi">
-                  <i class="fas fa-check text-success" *ngIf="cmd.etat === 'En attente'"></i>
-                  <i class="fas fa-redo text-muted" *ngIf="cmd.etat === 'Livré'"></i>
-                </button>
                 <button class="btn btn-sm btn-outline-info me-2"
                         data-bs-toggle="modal"
                         data-bs-target="#detailCommandeModal"
@@ -107,6 +147,42 @@
       </div>
     </div>
   </div>
+
+   <!-- LE BLOC PAGINATION DE 5 EN 5 -->
+  <div class="card-footer bg-white d-flex justify-content-between align-items-center py-3 border-top-0">
+    <small class="text-muted">
+      Affichage de la page <strong>{{ currentPage }}</strong> sur {{ totalPages }}
+      (listes totales : {{ commandesFiltres.length }} )
+    </small>
+
+    <nav aria-label="Navigation des commandes">
+      <ul class="pagination pagination-sm mb-0">
+        <!-- Bouton Précédent (Grisé si on est sur la page 1) -->
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="page-link" (click)="changerPage(currentPage - 1)">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+        </li>
+
+        <!-- Les numéros de page générés dynamiquement -->
+        <li class="page-item"
+            *ngFor="let p of [].constructor(totalPages); let i = index"
+            [class.active]="currentPage === i + 1">
+          <button class="page-link" (click)="changerPage(i + 1)">
+            {{ i + 1 }}
+          </button>
+        </li>
+
+        <!-- Bouton Suivant (Grisé si on est sur la dernière page) -->
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button class="page-link" (click)="changerPage(currentPage + 1)">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
 </div>
 
 

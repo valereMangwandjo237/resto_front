@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+/* Dans src/styles.css */
+:root {
+    --color-primary: #ff7a00 !important;
+    --color-primary-dark: #111c31!important;
+}

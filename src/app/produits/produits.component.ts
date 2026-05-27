@@ -37,12 +37,15 @@ export class ProduitsComponent {
   }
 
   confirmerSuppression(produit: any){
+    const colorPrimary = getComputedStyle(document.documentElement)
+    .getPropertyValue('--color-primary').trim() || '#d4af37';
+
     Swal.fire({
       title: 'Êtes-vous sûr ?',
       text: `Vous allez supprimer le produit : ${produit.nom}`,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#d4af37', // Ton doré
+      confirmButtonColor: colorPrimary, // Ton doré
       cancelButtonColor: '#343a40',  // Ton gris sombre
       confirmButtonText: 'Oui, supprimer !',
       cancelButtonText: 'Annuler'

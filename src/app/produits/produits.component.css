@@ -1,9 +1,9 @@
 .text-gold {
-    color: #d4af37;
+    color: var(--color-primary);
 }
 
 .btn-gold {
-    background-color: #d4af37;
+    background-color: var(--color-primary);
     color: white;
     border: none;
     border-radius: 8px;
@@ -11,7 +11,7 @@
 }
 
 .btn-gold:hover {
-    background-color: #b8972f;
+    background-color: var(--color-primary-dark);
     color: white;
 }
 
@@ -55,7 +55,7 @@
 
 /* Modal styling */
 .form-control:focus, .form-select:focus {
-    border-color: #d4af37;
+    border-color: var(--color-primary);
     box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.1);
 }
 
@@ -72,16 +72,16 @@ input[type="file"]::file-selector-button {
 }
 
 input[type="file"]::file-selector-button:hover {
-    background-color: #d4af37;
+    background-color: var(--color-primary);
 }
 
 
 .text-gold {
-  color: #d4af37;
+  color: var(--color-primary);
 }
 
 .btn-gold {
-  background-color: #d4af37;
+  background-color: var(--color-primary);
   color: white;
   border: none;
 }

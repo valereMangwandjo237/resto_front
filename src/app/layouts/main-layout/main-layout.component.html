@@ -1,0 +1,44 @@
+
+<div class="wrapper">
+  <nav id="sidebar" [class.active]="isCollapsed" *ngIf="showSidebar">
+    <div class="sidebar-header text-center py-4 border-bottom border-secondary-subtle">
+      <div class="logo-complet" *ngIf="!isCollapsed">
+        <img src="https://thumbs.dreamstime.com/b/resto-logo-vector-template-design-illustration-restaurant-nourriture-calibre-%C3%A9tiquette-chef-faisant-cuire-bistro-affaires-symbole-148663143.jpg?w=768"
+        alt="Logo Restaurant" class="img-fluid mb-2 logo-img" width="60">
+        <h4 class="fw-bold text-gold tracking-wide mb-0">Glacier Italien</h4>
+      </div>
+
+      <div class="logo-mini" *ngIf="isCollapsed">
+        <img src="https://thumbs.dreamstime.com/b/resto-logo-vector-template-design-illustration-restaurant-nourriture-calibre-%C3%A9tiquette-chef-faisant-cuire-bistro-affaires-symbole-148663143.jpg?w=768"
+        alt="Logo" class="img-fluid logo-img-mini">
+        </div>
+    </div>
+
+    <ul class="list-unstyled components">
+      <li>
+        <a routerLink="/dashboard" routerLinkActive="active-link"><i class="fas fa-chart-line me-2"></i>
+          Dashboard
+          <span *ngIf="nbEnAttente > 0" class="badge rounded-pill bg-danger shadow-sm badge-notif">{{ nbEnAttente }}</span>
+        </a>
+      </li>
+      <li><a routerLink="/utilisateurs" routerLinkActive="active-link"><i class="fas fa-users me-2"></i> Utilisateurs</a></li>
+      <li><a routerLink="/tables" routerLinkActive="active-link"><i class="fas fa-chair me-2"></i> Tables</a></li>
+      <li><a routerLink="/categories" routerLinkActive="active-link"><i class="fas fa-tags me-2"></i> Catégories</a></li>
+      <li><a routerLink="/produits" routerLinkActive="active-link"><i class="fas fa-hamburger me-2"></i> Produits</a></li>
+    </ul>
+  </nav>
+
+  <div id="content" >
+    <nav class="navbar navbar-light bg-light" *ngIf="showSidebar">
+      <div class="container-fluid">
+          <button type="button" class="btn-toggle" (click)="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+          </button>
+      </div>
+    </nav>
+
+    <div class="container-fluid p-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

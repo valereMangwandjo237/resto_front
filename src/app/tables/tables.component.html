@@ -1,1 +1,70 @@
-<p>tables works!</p>
+<div class="container mt-4">
+
+  <!-- En-tête avec titre et boutons filtres en jaune/doré -->
+  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+    <h4 class="fw-bold mb-0">
+      <i class="fas fa-chair me-2 text-gold"></i> Plan des Tables
+    </h4>
+
+    <!-- Filtres de statut stylisés avec notre bouton outline-gold -->
+    <div class="btn-group btn-group-sm" role="group">
+      <button class="btn btn-outline-gold" [class.active]="filtreStatut === 'tous'" (click)="filtreStatut = 'tous'">Toutes</button>
+      <button class="btn btn-outline-gold" [class.active]="filtreStatut === 'ouvert'" (click)="filtreStatut = 'ouvert'">Ouvertes</button>
+      <button class="btn btn-outline-gold" [class.active]="filtreStatut === 'fermé'" (click)="filtreStatut = 'fermé'">Fermées</button>
+    </div>
+  </div>
+
+  <!-- Grille des Tables -->
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 align-items-start">
+    <div class="col" *ngFor="let table of tablesVisibles">
+      <div class="card h-100 shadow-sm table-card"
+          [class.table-ouverte]="table.statut === 'ouvert'"
+          [class.bg-light]="table.statut === 'fermé'">
+        <div class="card-body d-flex flex-column justify-content-between p-3">
+
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <h5 class="card-title fw-bold mb-0 text-truncate">{{ table.nom }}</h5>
+            <span class="badge" [ngClass]="table.statut === 'ouvert' ? 'bg-soft-gold text-gold-dark' : 'bg-secondary-subtle text-secondary'">
+              {{ table.statut === 'ouvert' ? 'Ouvert' : 'Fermé' }}
+            </span>
+          </div>
+
+          <div class="text-center my-3">
+            <i class="fas fa-utensils fa-2x" [class.text-gold]="table.statut === 'ouvert'" [class.text-muted]="table.statut === 'fermé'"></i>
+          </div>
+
+          <div class="details-service-box mb-3 p-2 rounded bg-white border" *ngIf="tableSelectionneeId === table.id">
+            <h6 class="small fw-bold text-muted border-bottom pb-1 mb-2"><i class="fas fa-info-circle me-1"></i> Détails Service</h6>
+
+            <div *ngIf="table.service; else pasDeService">
+              <p class="mb-1 small"><strong>Serveur :</strong> {{ table.service.serveur }}</p>
+              <p class="mb-1 small"><strong>Ouvert :</strong> {{ table.service.dateOuverture }}</p>
+              <p class="mb-0 small"><strong>Fermé :</strong> {{ table.service.dateFermeture || 'En cours...' }}</p>
+            </div>
+
+            <ng-template #pasDeService>
+              <p class="mb-0 small text-muted text-center italic py-2">Aucun service actif (Table libre)</p>
+            </ng-template>
+          </div>
+
+          <div class="d-flex gap-2 mt-2">
+            <button class="btn btn-sm flex-grow-1"
+                    [ngClass]="table.statut === 'ouvert' ? 'btn-gold' : 'btn-outline-secondary'"
+                    (click)="basculerStatut(table)">
+              {{ table.statut === 'ouvert' ? 'Occuper' : 'Libérer' }}
+            </button>
+
+            <button class="btn btn-sm btn-dark text-nowrap"
+                    (click)="basculerDetails(table.id)"
+                    [title]="tableSelectionneeId === table.id ? 'Masquer' : 'Voir plus'">
+              <i class="fas" [ngClass]="tableSelectionneeId === table.id ? 'fa-eye-slash' : 'fa-eye'"></i>
+              {{ tableSelectionneeId === table.id ? 'Moins' : 'Voir plus' }}
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

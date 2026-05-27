@@ -1,0 +1,105 @@
+/* Conteneur principal */
+.wrapper {
+    display: flex;
+    align-items: stretch;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #343a40;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+/* État fermé */
+#sidebar.active {
+    margin-left: -250px;
+}
+
+/* Style des liens */
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #2c3136;
+}
+
+#sidebar ul li a {
+    padding: 15px 20px;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+#sidebar ul li a:hover {
+    background: #495057;
+}
+
+/* Zone de contenu */
+#content {
+    width: 100%;
+}
+
+.btn-toggle {
+    background: #343a40;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+
+/* Style appliqué automatiquement par Angular au lien actif */
+.active-link {
+    background: #495057 !important; /* Gris plus clair que le fond */
+    color: #ffc107 !important;     /* Texte en jaune/or pour le restaurant */
+    border-left: 4px solid #ffc107; /* Petite barre de rappel à gauche */
+}
+
+/* On s'assure que les icônes suivent la couleur du texte actif */
+.active-link i {
+    color: #ffc107;
+}
+
+.main-layout {
+  display: flex;
+}
+
+.content-area {
+  flex-grow: 1;
+  /* Si la sidebar n'est pas là, le contenu prendra 100% de la largeur automatiquement */
+}
+
+
+/* Style du header de la sidebar */
+.sidebar-header {
+    background-color: #212529; /* Fond sombre pour faire ressortir le doré */
+    transition: all 0.3s ease;
+}
+
+/* Taille contrôlée pour le grand logo */
+.logo-img {
+    max-height: 70px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.2)); /* Donne du relief au logo */
+}
+
+/* Taille pour le mini logo quand la barre est repliée */
+.logo-img-mini {
+    max-height: 35px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Espacement des lettres pour un look plus "Luxe / Resto Gastro" */
+.tracking-wide {
+    letter-spacing: 1.5px;
+    font-size: 1.2rem;
+}
+
+/* On s'assure que text-gold utilise bien ta variable root */
+.text-gold {
+    color: var(--color-primary);
+}

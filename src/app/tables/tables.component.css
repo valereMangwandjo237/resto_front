@@ -1,0 +1,75 @@
+/* Style de base des cartes de tables */
+.table-card {
+    border-radius: 12px;
+    border: 1px solid #e9ecef !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* Quand la table est ouverte, on lui donne une légère lueur dorée au survol */
+.table-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Style de la table OUVERTE / DISPONIBLE */
+.table-ouverte {
+    /* Crée une bordure subtile avec ton jaune doré */
+    border: 1px solid var(--color-primary) !important;
+}
+
+/* Badge jaune "soft" (fond transparent à 12% basé sur ton jaune doré) */
+.bg-soft-gold {
+    /* Fond jaune très doux à 12% d'opacité */
+    background-color: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    /* Bordure légèrement plus visible */
+    border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+}
+
+/* Classe spécifique pour le texte du badge ouvert */
+.text-gold-dark {
+    /* On mélange ton jaune avec 60% de noir pour obtenir un doré foncé/bronze très chic et contrasté */
+    color: color-mix(in srgb, var(--color-primary) 40%, #000) !important;
+    font-weight: 700; /* On force le texte en gras pour améliorer la lisibilité */
+}
+
+/* Boutons personnalisés basés sur ton jaune */
+.btn-gold {
+    background-color: var(--color-primary);
+    color: #000; /* Texte noir ou sombre pour rester lisible sur du jaune */
+    font-weight: 600;
+    border: 1px solid var(--color-primary);
+}
+
+.btn-gold:hover {
+    background-color: color-mix(in srgb, var(--color-primary) 85%, #000);
+    border-color: color-mix(in srgb, var(--color-primary) 85%, #000);
+    color: #000;
+}
+
+.btn-outline-gold {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    font-weight: 600;
+}
+
+.btn-outline-gold:hover, .btn-outline-gold.active {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #000; /* Devient noir au survol pour le contraste */
+}
+
+/* Boîte contenant les informations du serveur et des dates */
+.details-service-box {
+  animation: fadeIn 0.2s ease-in-out;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.italic {
+    font-style: italic;
+}
+
+/* Petite animation pour ouvrir la boîte en douceur */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
